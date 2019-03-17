@@ -3,6 +3,36 @@
   
     
     <entry>
+      <title>从负基础开始的小程序学习之路——初识js</title>
+      <link href="/2019/03/17/%E4%BB%8E%E8%B4%9F%E5%9F%BA%E7%A1%80%E5%BC%80%E5%A7%8B%E7%9A%84%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E8%AF%86js/"/>
+      <content type="html"><![CDATA[<p>本篇将会出现以下内容：小程序、JavaScript以及一些奇怪的东西<br><a id="more"></a></p><hr><h2 id="学习一个"><a href="#学习一个" class="headerlink" title="学习一个"></a>学习一个</h2><p>微信小程序：</p><h2 id="提高水平"><a href="#提高水平" class="headerlink" title="提高水平"></a>提高水平</h2><p>开发者工具出现不能输入中文的问题：<a href="https://www.cnblogs.com/xyyt/p/10005947.html" target="_blank" rel="noopener">解决方法</a></p><blockquote><p>经验证， ctrl(command) + shfit + w 重启下项目，是可行的，看来也只有如此了。<br>期待下个版本解决这个问题。</p></blockquote><p><a href="https://www.openxy.com/books/wx/02/show.html#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3%E9%A1%B5" target="_blank" rel="noopener">教程</a>中部分内容不能通过编译：</p><blockquote><p>修改项目根目录下的 app.json 文件，如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "pages":[</span><br><span class="line">    "pages/posts/show", // 第一行表示入口首页。原内容为pages/index/index，即原首页</span><br><span class="line">    "pages/logs/logs"</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></blockquote><blockquote><p>保存后，立即会在预览窗口中看到刚才编写的show页面的渲染结果了</p></blockquote><p>实际操作中，会报错<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page is not constructed because it is not found</span><br></pre></td></tr></table></figure></p><p>初步判断是因为更改目录后index页面未被渲染，在<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"pages"</span>:[</span><br><span class="line">        <span class="string">"page/index/index"</span>,</span><br><span class="line">        <span class="string">"page/log/log"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>前加入新编写页面地址<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"pages"</span>:[</span><br><span class="line">        <span class="string">"pages/posts/show"</span></span><br><span class="line">        <span class="string">"pages/index/index"</span>,</span><br><span class="line">        <span class="string">"pages/log/log"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>即可编译通过正常显示</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>简析hexo的运作机制</title>
+      <link href="/2019/01/05/%E7%AE%80%E6%9E%90hexo%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6/"/>
+      <content type="html"><![CDATA[]]></content>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> 咕咕咕 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>2019的简单规划</title>
       <link href="/2019/01/02/2019%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%84%E5%88%92/"/>
       <content type="html"><![CDATA[<p>一年又一年<br><a id="more"></a><br>又是一年的开始。看了一下之前做的总结，发现有些做到了，有些还在路上。那么，着眼于整年，重新定一份新的计划吧。</p><h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ol><li>期末考试无挂科<br>——当然这就需要近几周的爆肝。每天做一定量的题，哪怕没有复习计划也不能停止对题目的熟练。</li><li>假期继续学习<br>——不仅包括技术层面。编程着眼于需求，在学习的同时保证操作熟练度。学习新知识，不虚度大学时光。</li></ol><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>继续熟练Git的基操，掌握团队合作的基本流程，有条件的话与任意一位对Git无了解的同学一起在github上完成某项写作任务。</p><h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><p>博客按时更新，每周一篇技术类分享，总结技术的同时锻炼语言组织能力。</p><h2 id="健康"><a href="#健康" class="headerlink" title="健康"></a>健康</h2><p>每日步数5000+，从身体健康开始养成良好的作息习惯。</p><p><hr style="border:1 dashed #987cb9" width="80%" color="#987cb9" size="1"><br>一点微小的计划，希望之后可以具体而微，落实到实际。</p>]]></content>
