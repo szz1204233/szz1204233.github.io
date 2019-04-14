@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   
   
-  <title>  从负基础开始的小程序学习之路——初识Js |   StarDust </title>
+  <title>  从负基础开始的小程序学习之路——页面周期 |   StarDust </title>
 
  
   
@@ -79,18 +79,18 @@
 	
 <div class="post-header">
 	<p class="post-title">	
-		从负基础开始的小程序学习之路——初识js
+		从负基础开始的小程序学习之路——页面周期
 	</p>
 
 	<div class="post-info">	
 		<span class="post-info-entry">
-			3月 17, 2019
+			4月 14, 2019
 		</span>
 
 		
 		
 			<i class="iconfont icon-words"></i>
-			<span class="post-info-entry">783
+			<span class="post-info-entry">165
 			</span>
 		
 	</div>
@@ -103,53 +103,7 @@
 		
 
 			
-					<p>本篇将会出现以下内容：小程序、JavaScript以及一些奇怪的东西<br><a id="more"></a></p>
-<hr>
-
-<h2 id="学习一个"><a href="#学习一个" class="headerlink" title="学习一个"></a>学习一个</h2><h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><ul>
-<li>const //定义必须初始化且不可修改的全局变量</li>
-<li>var //定义全局变量或者函数变量</li>
-<li><p>let //定义块级变量</p>
-</li>
-<li><p>一个JS文件中只可以存在一个page页面</p>
-</li>
-<li><p>Math.floor() //对一个数进行下舍入，即向下取整</p>
-</li>
-</ul>
-<h2 id="提高水平"><a href="#提高水平" class="headerlink" title="提高水平"></a>提高水平</h2><ul>
-<li>开发者工具出现不能输入中文的问题：<a href="https://www.cnblogs.com/xyyt/p/10005947.html" target="_blank" rel="noopener">解决方法</a><blockquote>
-<p>经验证， ctrl(command) + shfit + w 重启下项目，是可行的，看来也只有如此了。<br>期待下个版本解决这个问题。</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li><p><a href="https://www.openxy.com/books/wx/02/show.html#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3%E9%A1%B5" target="_blank" rel="noopener">教程</a>中部分内容不能通过编译：</p>
-<blockquote>
-<p>修改项目根目录下的 app.json 文件，如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "pages":[</span><br><span class="line">    "pages/posts/show", // 第一行表示入口首页。原内容为pages/index/index，即原首页</span><br><span class="line">    "pages/logs/logs"</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>保存后，立即会在预览窗口中看到刚才编写的show页面的渲染结果了</p>
-</blockquote>
-</li>
-</ul>
-<p>实际操作中，会报错<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page is not constructed because it is not found</span><br></pre></td></tr></table></figure></p>
-<p>初步判断是因为更改目录后index页面未被渲染，在<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"pages"</span>:[</span><br><span class="line">        <span class="string">"page/index/index"</span>,</span><br><span class="line">        <span class="string">"page/log/log"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>前加入新编写页面地址<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"pages"</span>:[</span><br><span class="line">        <span class="string">"pages/posts/show"</span>,</span><br><span class="line">        <span class="string">"pages/index/index"</span>,</span><br><span class="line">        <span class="string">"pages/log/log"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>即可编译通过正常显示</p>
-<h2 id="一些弯路"><a href="#一些弯路" class="headerlink" title="一些弯路"></a>一些弯路</h2><ul>
-<li>如何实现网页间的跳转？</li>
-<li>如何在页面上生成卡牌图片？</li>
-</ul>
-<h2 id="下周目标"><a href="#下周目标" class="headerlink" title="下周目标"></a>下周目标</h2><ul>
-<li>明确如何实现功能：使用flex布局与border方法</li>
-<li>简单的实现功能<ul>
-<li>形成卡牌轮廓</li>
-<li>可以上传图片</li>
-</ul>
-</li>
-<li>继续学习js与wxml</li>
-</ul>
+					<p>如何更有效的摸鱼<br><a id="more"></a><br>俗话说，摸鱼一时爽，一直摸鱼一直爽。写程序的本质宗旨也是能摸则摸，有前人造好的轮子就拿来用，省下的时间可以更好的提升自我，学习摸鱼经验（<br>在微信小程序里，就有这么一种高效摸鱼的办法，就是在一个页面上尽可能的呈现多种内容，减少用户跳转的同时，也能省下新页面的构建时间。而实现这种功能的第一步，就是了解页面周期的原理。</p>
   	
 					
 	  </div>     
@@ -229,21 +183,21 @@
 <nav class="post-footer-nav">
   <div class="post-footer-link">
   
-      <a href="/2019/01/05/简析hexo的运作机制/" id="post-nav-older" class="post-nav-link-wrap">
+      <a href="/2019/03/17/从负基础开始的小程序学习之路——初识js/" id="post-nav-older" class="post-nav-link-wrap">
         <strong class="post-nav-caption">older</strong>
         
-          <a class="post-nav-title" href="/2019/01/05/简析hexo的运作机制/">
-          简析hexo的运作机制</a>
+          <a class="post-nav-title" href="/2019/03/17/从负基础开始的小程序学习之路——初识js/">
+          从负基础开始的小程序学习之路——初识js</a>
       </a>
   
   </div>
   <div class="post-footer-link">
     
-        <a href="/2019/04/14/从负基础开始的小程序学习之路——页面周期/" id="post-nav-newer" class="post-nav-link-wrap">
+        <a href="/2019/04/14/从负基础开始的小程序之路——页面布局/" id="post-nav-newer" class="post-nav-link-wrap">
           <strong class="post-nav-caption">newer</strong>
              
-            <a class="post-nav-title" href="/2019/04/14/从负基础开始的小程序学习之路——页面周期/">
-            从负基础开始的小程序学习之路——页面周期</a>
+            <a class="post-nav-title" href="/2019/04/14/从负基础开始的小程序之路——页面布局/">
+            从负基础开始的小程序之路——页面布局</a>
         </a>
     
   </div>
@@ -281,7 +235,7 @@
 				CONTENT
 			</p>
 			<div class="toc-list">
-				<ol class="toc-inner"><li class="toc-inner-item toc-inner-level-2"><a class="toc-inner-link" href="#学习一个"><span class="toc-inner-text">学习一个</span></a><ol class="toc-inner-child"><li class="toc-inner-item toc-inner-level-3"><a class="toc-inner-link" href="#JavaScript语法"><span class="toc-inner-text">JavaScript语法</span></a></li></ol></li><li class="toc-inner-item toc-inner-level-2"><a class="toc-inner-link" href="#提高水平"><span class="toc-inner-text">提高水平</span></a></li><li class="toc-inner-item toc-inner-level-2"><a class="toc-inner-link" href="#一些弯路"><span class="toc-inner-text">一些弯路</span></a></li><li class="toc-inner-item toc-inner-level-2"><a class="toc-inner-link" href="#下周目标"><span class="toc-inner-text">下周目标</span></a></li></ol>
+				
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  从负基础开始的小程序之路——页面布局 |   StarDust </title>
+
+ 
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		从负基础开始的小程序之路——页面布局
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			4月 14, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">1032
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p>好的布局是成功的一半。——鲁迅（没说过）<br><a id="more"></a><br>作为界面的重要组成部分，布局一直以来是前端很看重的部分之一。在各种页面布局之中，微信小程序采用了flex布局。</p>
+<blockquote>
+<p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</p>
+<div style="text-align: right">——<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">阮一峰的网络日志</a></div>
+</blockquote>
+<p>与同样是布局方式的Grid布局相比，Flex是轴线布局，可以理解为在一维方向上的Grid布局。微信小程序部分支持Grid布局，考虑兼容性的情况下优先选择Flex布局编写。</p>
+<h3 id="Flex布局简介"><a href="#Flex布局简介" class="headerlink" title="Flex布局简介"></a>Flex布局简介</h3><p>任何一个容器都可以指定为 Flex 布局。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>行内元素也可以使用 Flex 布局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
+<h3 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h3><h4 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h4><ul>
+<li>flex-direction: 主轴的方向 row | row-reverse | column | column-reverse</li>
+<li>flex-wrap: 如何换行  nowrap | wrap | wrap-reverse</li>
+<li>flex-flow:</li>
+<li>justify-content:</li>
+<li>align-items:</li>
+<li>align-content:</li>
+</ul>
+<h4 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h4><ul>
+<li>order: 属性定义项目的排列顺序，数值越小，排列越靠前</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-basis</li>
+<li>flex</li>
+<li>align-self: 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</li>
+</ul>
+<h3 id="实际运用"><a href="#实际运用" class="headerlink" title="实际运用"></a>实际运用</h3><p>在实际运用中，程序的功能决定了可以只采用简单的对齐方式，因此我选择了类似圣杯布局的1-2-1排列，不同的是最上一行是内容部分，第二行是导航栏，最下为上传按钮。</p>
+<h3 id="待改进事项"><a href="#待改进事项" class="headerlink" title="待改进事项"></a>待改进事项</h3><ol>
+<li>目前采用的是绝对大小，即不能自适应屏幕大小。如何使布局自适应不同大小的手机屏幕、进一步适应大小的平板电脑？</li>
+<li>…</li>
+</ol>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/04/14/从负基础开始的小程序学习之路——页面周期/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/04/14/从负基础开始的小程序学习之路——页面周期/">
+          从负基础开始的小程序学习之路——页面周期</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/04/14/从负基础开始的小程序之路——滑动组件/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/04/14/从负基础开始的小程序之路——滑动组件/">
+            从负基础开始的小程序之路——滑动组件</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+
+    <div id="comment">   
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+    <script src="//unpkg.com/valine@v1.1.8-beta/dist/Valine.min.js"></script>
+
+    <script>
+        new Valine({
+        el: '#comment',
+        notify:false, 
+        verify:false, 
+        app_id: 'gndb0VArDDVIyMYvQ4DUx3NY-gzGzoHsz',
+        app_key: 'tGYoPbAoxT1P3eWuqRSEDOXi',  
+        path:window.location.pathname, 
+        avatar:'mm' ,
+        guest_info:['nick','mail']
+        });
+    </script>
+	
+</article>
+
+	<div class="toc-container">
+			<div class="toc-sidebar">
+			<p class="toc-title">
+				CONTENT
+			</p>
+			<div class="toc-list">
+				<ol class="toc-inner"><li class="toc-inner-item toc-inner-level-3"><a class="toc-inner-link" href="#Flex布局简介"><span class="toc-inner-text">Flex布局简介</span></a></li><li class="toc-inner-item toc-inner-level-3"><a class="toc-inner-link" href="#基本属性"><span class="toc-inner-text">基本属性</span></a><ol class="toc-inner-child"><li class="toc-inner-item toc-inner-level-4"><a class="toc-inner-link" href="#容器属性"><span class="toc-inner-text">容器属性</span></a></li><li class="toc-inner-item toc-inner-level-4"><a class="toc-inner-link" href="#项目属性"><span class="toc-inner-text">项目属性</span></a></li></ol></li><li class="toc-inner-item toc-inner-level-3"><a class="toc-inner-link" href="#实际运用"><span class="toc-inner-text">实际运用</span></a></li><li class="toc-inner-item toc-inner-level-3"><a class="toc-inner-link" href="#待改进事项"><span class="toc-inner-text">待改进事项</span></a></li></ol>
+			</div>
+		</div>
+	</div>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2018-
+		
+		2019		
+	
+		szz1204
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>
