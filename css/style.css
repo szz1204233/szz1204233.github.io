@@ -1814,6 +1814,26 @@ img.pswp__img {
 .mobile-menus .dynamic-menu:nth-child(1) {
   margin-top: 0;
 }
+blockquote {
+  background: #f9f9f9;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  border-left: 0.2em solid color-border;
+  margin: 20px 0px;
+  padding: 0px 30px;
+  line-height: line-height;
+  font-size: font-size;
+}
+blockquote footer {
+  background: color-section;
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  line-height: 1em;
+}
+blockquote cite {
+  font-style: italic;
+  padding-left: 0.5em;
+}
 @media screen and (max-width: 1468px) {
   html,
   body {
