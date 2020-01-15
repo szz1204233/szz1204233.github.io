@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>StarDust</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.foundation42.work/"/>
+  <updated>2020-01-15T15:28:34.312Z</updated>
+  <id>https://blog.foundation42.work/</id>
+  
+  <author>
+    <name>szz1204</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RSS及在Hexo框架下的使用</title>
+    <link href="https://blog.foundation42.work/2020/01/15/RSS%E5%8F%8A%E5%9C%A8Hexo%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://blog.foundation42.work/2020/01/15/RSS%E5%8F%8A%E5%9C%A8Hexo%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-01-15T15:04:45.000Z</published>
+    <updated>2020-01-15T15:28:34.312Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇文章将简要介绍RSS及如何在Hexo框架下添加RSS功能。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="博客" scheme="https://blog.foundation42.work/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Hexo" scheme="https://blog.foundation42.work/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>路与路标</title>
+    <link href="https://blog.foundation42.work/2020/01/13/%E8%B7%AF%E4%B8%8E%E8%B7%AF%E6%A0%87/"/>
+    <id>https://blog.foundation42.work/2020/01/13/%E8%B7%AF%E4%B8%8E%E8%B7%AF%E6%A0%87/</id>
+    <published>2020-01-13T14:06:52.000Z</published>
+    <updated>2020-01-15T15:29:02.301Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="博客" scheme="https://blog.foundation42.work/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Hexo" scheme="https://blog.foundation42.work/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019的简单规划</title>
+    <link href="https://blog.foundation42.work/2019/01/02/2019%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%84%E5%88%92/"/>
+    <id>https://blog.foundation42.work/2019/01/02/2019%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%84%E5%88%92/</id>
+    <published>2019-01-02T11:57:55.000Z</published>
+    <updated>2020-01-15T15:03:10.359Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一年又一年&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="日常" scheme="https://blog.foundation42.work/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一些计划与目标</title>
+    <link href="https://blog.foundation42.work/2018/11/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E4%B8%8E%E7%9B%AE%E6%A0%87/"/>
+    <id>https://blog.foundation42.work/2018/11/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E4%B8%8E%E7%9B%AE%E6%A0%87/</id>
+    <published>2018-11-18T03:19:00.000Z</published>
+    <updated>2020-01-15T15:03:06.547Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;寒冬已至，恍惚中时间翩然而去。之后的日子里，让我们继续前行。&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="计划" scheme="https://blog.foundation42.work/tags/%E8%AE%A1%E5%88%92/"/>
+    
+      <category term="生活" scheme="https://blog.foundation42.work/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客样式调整</title>
+    <link href="https://blog.foundation42.work/2018/11/16/%E5%8D%9A%E5%AE%A2%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4/"/>
+    <id>https://blog.foundation42.work/2018/11/16/%E5%8D%9A%E5%AE%A2%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4/</id>
+    <published>2018-11-16T13:03:46.000Z</published>
+    <updated>2020-01-15T15:02:07.694Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;搞了接近两天，换了默认的样式。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="博客" scheme="https://blog.foundation42.work/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="技术" scheme="https://blog.foundation42.work/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+</feed>
