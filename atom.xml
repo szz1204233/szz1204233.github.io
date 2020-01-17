@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.foundation42.work/"/>
-  <updated>2020-01-17T14:44:25.543Z</updated>
+  <updated>2020-01-17T13:09:28.616Z</updated>
   <id>https://blog.foundation42.work/</id>
   
   <author>
@@ -15,23 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>在hexo中引用图片或文件</title>
-    <link href="https://blog.foundation42.work/2020/01/17/%E5%9C%A8hexo%E4%B8%AD%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87%E6%88%96%E6%96%87%E4%BB%B6/"/>
-    <id>https://blog.foundation42.work/2020/01/17/%E5%9C%A8hexo%E4%B8%AD%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87%E6%88%96%E6%96%87%E4%BB%B6/</id>
-    <published>2020-01-17T14:21:32.000Z</published>
-    <updated>2020-01-17T14:44:25.543Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本篇介绍如何在Hexo中引用图片或文件&lt;br&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>RSS及在Hexo框架下的使用</title>
