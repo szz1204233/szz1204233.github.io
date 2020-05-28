@@ -6,19 +6,14 @@
   <meta name="keywords" content=" 技术 , npm , 分析报告 ">
   <meta name="description" content="使用npm link调试本地未发布模块 | StarDust">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="向看到本界面的智慧生命致以最美好的祝愿。     My Steam Profile (from SteamDB,2020.3.13) - Games owned: 83- Games played: 56 (67%)- Hours on record: 1,096.2h  偶尔想起来记录的豆瓣">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://blog.foundation42.work/about/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://blog.foundation42.work/tags/index.html">
 <meta property="og:site_name" content="StarDust">
-<meta property="og:description" content="向看到本界面的智慧生命致以最美好的祝愿。     My Steam Profile (from SteamDB,2020.3.13) - Games owned: 83- Games played: 56 (67%)- Hours on record: 1,096.2h  偶尔想起来记录的豆瓣">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://blog.foundation42.work/images/douban_20200313.jpg">
-<meta property="og:updated_time" content="2020-03-13T15:15:47.091Z">
+<meta property="og:updated_time" content="2020-01-12T13:22:43.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="向看到本界面的智慧生命致以最美好的祝愿。     My Steam Profile (from SteamDB,2020.3.13) - Games owned: 83- Games played: 56 (67%)- Hours on record: 1,096.2h  偶尔想起来记录的豆瓣">
-<meta name="twitter:image" content="https://blog.foundation42.work/images/douban_20200313.jpg">
+<meta name="twitter:title" content="tags">
 
 
 <link rel="icon" href="/img/favicon.png">
@@ -201,6 +196,14 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a class="color3">计划</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">生活</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color5">Hexo</a>
     </li>
     
@@ -210,14 +213,6 @@
     
     <li class="article-tag-list-item">
         <a class="color5">分析报告</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">计划</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">生活</a>
     </li>
     
     <div class="clearfix"></div>
@@ -300,7 +295,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2020-05-28 14:50:03">2020-03-13 17:25</time>
+        创建时间:<time class="date" title="更新时间: 2020-05-28 14:52:17">2020-03-13 17:25</time>
         
     </div>
     <div class="article-meta">
@@ -313,7 +308,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发历程"><span class="toc-text">开发历程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核查原因"><span class="toc-text">核查原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尚存问题"><span class="toc-text">尚存问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock-json的特性，每一次npm-install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock-json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。"><span class="toc-text">经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock.json的特性，每一次npm install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock.json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发历程"><span class="toc-text">开发历程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核查原因"><span class="toc-text">核查原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尚存问题"><span class="toc-text">尚存问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -343,7 +338,9 @@ npm link redis              # link-install the package
 </code></pre></blockquote>
 <p>使用自然语言可描述如下：<br>在准备引入的包路径下打开CMD并执行命令<code>npm link</code>，再切换至需要安装的包路径下执行<code>npm link &lt;packagename&gt;</code>引入包。</p>
 <p>在Windows系统下，目标项目的<code>node_modules</code>文件夹中，从外部引入的包文件夹以快捷方式形式出现。此时，即可直接在项目中引用此包。</p>
-<h2 id="尚存问题"><a href="#尚存问题" class="headerlink" title="尚存问题"></a>尚存问题</h2><h2 id="经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock-json的特性，每一次npm-install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock-json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。"><a href="#经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock-json的特性，每一次npm-install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock-json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。" class="headerlink" title="经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock.json的特性，每一次npm install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock.json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。"></a>经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于<code>package-lock.json</code>的特性，每一次<code>npm install</code>操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护<code>package-lock.json</code>，但复杂度显然更高。可见，这种方法<a href="https://github.com/atian25/blog/issues/17#issuecomment-363645010" target="_blank" rel="noopener">仅适用于调试</a>，一劳永逸的解决办法仍是发布于npm。</h2><p>3.14修改：<br>事实上可以做到开发项目更新npm包后仍可使用链接——只需将链接链至npm全局下即可，此时局部的包更新并不会影响全局变量。当然全局包更新后亦需重新配置。</p>
+<h2 id="尚存问题"><a href="#尚存问题" class="headerlink" title="尚存问题"></a>尚存问题</h2><p>经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于<code>package-lock.json</code>的特性，每一次<code>npm install</code>操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护<code>package-lock.json</code>，但复杂度显然更高。可见，这种方法<a href="https://github.com/atian25/blog/issues/17#issuecomment-363645010" target="_blank" rel="noopener">仅适用于调试</a>，一劳永逸的解决办法仍是发布于npm。</p>
+<hr>
+<p>3.14修改：<br>事实上可以做到开发项目更新npm包后仍可使用链接——只需将链接链至npm全局下即可，此时局部的包更新并不会影响全局变量。当然全局包更新后亦需重新配置。</p>
 
       
        
@@ -357,7 +354,7 @@ npm link redis              # link-install the package
     <p><span class="copy-title">文章字数:</span><span class="post-count">782</span></p>
     <p><span class="copy-title">本文作者:</span><a title="szz1204">szz1204</a></p>
     <p><span class="copy-title">发布时间:</span>2020-03-13, 17:25:56</p>
-    <p><span class="copy-title">最后更新:</span>2020-05-28, 14:50:03</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-28, 14:52:17</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/03/13/使用npm-link调试本地未发布模块/" title="使用npm link调试本地未发布模块">https://blog.foundation42.work/2020/03/13/使用npm-link调试本地未发布模块/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -402,7 +399,7 @@ npm link redis              # link-install the package
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#技术','#日常','#Hexo','#npm','#分析报告','#计划','#生活',],
+            'data': ['#技术','#日常','#计划','#生活','#Hexo','#npm','#分析报告',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
