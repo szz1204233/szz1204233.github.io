@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.foundation42.work/"/>
-  <updated>2020-03-13T14:15:46.044Z</updated>
+  <updated>2020-03-14T06:52:17.744Z</updated>
   <id>https://blog.foundation42.work/</id>
   
   <author>
@@ -21,7 +21,9 @@
     <link href="https://blog.foundation42.work/2020/03/13/%E4%BD%BF%E7%94%A8npm-link%E8%B0%83%E8%AF%95%E6%9C%AC%E5%9C%B0%E6%9C%AA%E5%8F%91%E5%B8%83%E6%A8%A1%E5%9D%97/"/>
     <id>https://blog.foundation42.work/2020/03/13/%E4%BD%BF%E7%94%A8npm-link%E8%B0%83%E8%AF%95%E6%9C%AC%E5%9C%B0%E6%9C%AA%E5%8F%91%E5%B8%83%E6%A8%A1%E5%9D%97/</id>
     <published>2020-03-13T09:25:56.000Z</published>
-    <updated>2020-03-13T14:15:46.044Z</updated>
+    <updated>2020-03-14T06:52:17.744Z</updated>
+    
+    <content type="html"><![CDATA[<p>在使用npm包时，未研究npm同步原理，致使在下载新npm包时本地开发的模块丢失。通过<code>npm link</code>命令，使本地开发未发布的包成为可能。<br><a id="more"></a></p><hr><h2 id="开发历程"><a href="#开发历程" class="headerlink" title="开发历程"></a>开发历程</h2><p>在开发unifiedjs的过程中，需要对已存在的模块<code>rehype-document</code>进行修改。为了方便，直接将该模块复制并更名为<code>rehype-document-test</code>，移入开发工程的<code>./node_modules/</code>目录下。开发过程中，又按照npm包格式新建了临时的<code>my-addon-hasttreeedit</code>包用以存放功能函数。<br>由于开发需要，使用命令<code>npm install &lt;target&gt;</code>下载新包。下载完毕后，控制台显示已移除部分包并安装新包，查看工作区发现正在编辑的index.js文件及其所在的<code>my-addon-hasttreeedit</code>包已被移除。<br>立刻新建<code>index.js</code>文件，将vscode工作区缓存的代码复制粘贴保存。查看<code>rehype-document-test</code>包，发现其未受影响。</p><h2 id="核查原因"><a href="#核查原因" class="headerlink" title="核查原因"></a>核查原因</h2><p>初步怀疑是因为在下载时需要核对包名，若不符则删除，依照这个想法查到了<code>package-lock.json</code>，发现其中有复制后的<code>rehype-document-test</code>包，但是由于我只是对包名进行了重命名操作，因此<code>package-lock.json</code>中对应的字段除名称不同外仍为原包信息，也因此通过npm检查未被移除。<br>经尝试，在使用npm更新包时，会根据<code>package-lock.json</code>文件更新包信息，因此在包中直接加入未发布的自定义模块是不可行的。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>经过搜索，在互联网上找到了<a href="https://cnodejs.org/topic/588465891dc8ff8739cbc583" target="_blank" rel="noopener">一篇问答</a>，其中介绍了应对的方法。<br>根据<a href="https://docs.npmjs.com/cli/link" target="_blank" rel="noopener">官方文档</a>，使用<code>npm link</code>命令可解决本地包引入的问题。</p><blockquote><pre><code>cd ~/projects/node-redis    # go into the package directorynpm link                    # creates global linkcd ~/projects/node-bloggy   # go into some other package directory.npm link redis              # link-install the package</code></pre></blockquote><p>使用自然语言可描述如下：<br>在准备引入的包路径下打开CMD并执行命令<code>npm link</code>，再切换至需要安装的包路径下执行<code>npm link &lt;packagename&gt;</code>引入包。</p><p>在Windows系统下，目标项目的<code>node_modules</code>文件夹中，从外部引入的包文件夹以快捷方式形式出现。此时，即可直接在项目中引用此包。</p><h2 id="尚存问题"><a href="#尚存问题" class="headerlink" title="尚存问题"></a>尚存问题</h2><h2 id="经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock-json的特性，每一次npm-install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock-json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。"><a href="#经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock-json的特性，每一次npm-install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock-json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。" class="headerlink" title="经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于package-lock.json的特性，每一次npm install操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护package-lock.json，但复杂度显然更高。可见，这种方法仅适用于调试，一劳永逸的解决办法仍是发布于npm。"></a>经过测试，该方案可解决因为npm包更新导致的本地包删除，但由于<code>package-lock.json</code>的特性，每一次<code>npm install</code>操作后，链接的快捷方式都会被删除，此时需要重新链接，如果本地调试包较多则设置时非常麻烦。另一个解决办法是个人维护<code>package-lock.json</code>，但复杂度显然更高。可见，这种方法<a href="https://github.com/atian25/blog/issues/17#issuecomment-363645010" target="_blank" rel="noopener">仅适用于调试</a>，一劳永逸的解决办法仍是发布于npm。</h2><p>3.14修改：<br>事实上可以做到开发项目更新npm包后仍可使用链接——只需将链接链至npm全局下即可，此时局部的包更新并不会影响全局变量。当然全局包更新后亦需重新配置。</p>]]></content>
     
     <summary type="html">
     
@@ -48,6 +50,8 @@
     <published>2020-01-15T15:04:45.000Z</published>
     <updated>2020-01-17T13:09:28.616Z</updated>
     
+    <content type="html"><![CDATA[<p>本篇文章将简要介绍RSS及如何在Hexo框架下添加RSS功能。<br><a id="more"></a></p><h2 id="什么是RSS"><a href="#什么是RSS" class="headerlink" title="什么是RSS"></a>什么是RSS</h2><p>根据<a href="https://zh.wikipedia.org/zh-cn/RSS" target="_blank" rel="noopener">维基百科的描述</a>：</p><blockquote><p>RSS（简易信息聚合）是一种消息来源格式规范，用以聚合经常发布更新数据的网站，例如博客文章、新闻、音频或视频的网摘。</p></blockquote><p>简要来说，RSS可以理解为一种由内容生产者产出并发布、接收者通过按时读取发布页面获得更新的信息传递形式。由于其可以使读者使用一个客户端阅读多个内容生产者产出的内容，故被用作聚合信息阅读。<br>对于博客而言，由于个人博客的 SEO 较差，为了方便访客订阅，相比于添加收藏夹，一个更为有效的办法就是产生博客的RSS源。而Hexo也提供了对应的插件，使用其生产RSS亦非难事。</p><h2 id="在Hexo框架下生成RSS源"><a href="#在Hexo框架下生成RSS源" class="headerlink" title="在Hexo框架下生成RSS源"></a>在Hexo框架下生成RSS源</h2><ol><li><p>安装对应插件<br>通过阅读官方文档可知，Hexo提供RSS订阅功能的插件为<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a>.<br>在博客根目录下使用命令<code>npm install hexo-generator-feed --save</code>以下载插件</p></li><li><p>配置<code>_config.yml</code>文件<br>在博客根目录下的<code>_config.yml</code>文件中添加如下内容：</p><pre><code class="yml"> feed:     type: atom # atom/rss2     path: atom.xml # atom.xml/rss2.xml     limit: 20 # 展示文章的数量,0或则false代表展示全部     hub:     content: # 在RSS文件中是否包含内容,默认不填为false     content_limit: # 摘要的最大长度     content_limit_delim: &#39; &#39; # 摘要以何限制符于最大长度前提前结束</code></pre></li><li><p>调试<br>使用<code>hexo g</code>命令调试并通过<code>hexo s</code>命令于本地查看RSS是否可正常生成。</p></li><li><p>使能并订阅RSS<br>在支持RSS的Hexo主题内使能RSS，并在使用的RSS阅读器中添加RSS源。</p></li></ol><p><hr><br>参考资料：<a href="https://segmentfault.com/a/1190000012647294" target="_blank" rel="noopener">为hexo博客添加RSS订阅功能</a></p>]]></content>
+    
     <summary type="html">
     
       &lt;p&gt;本篇文章将简要介绍RSS及如何在Hexo框架下添加RSS功能。&lt;br&gt;
@@ -68,6 +72,8 @@
     <id>https://blog.foundation42.work/2020/01/13/%E8%B7%AF%E4%B8%8E%E8%B7%AF%E6%A0%87/</id>
     <published>2020-01-13T14:06:52.000Z</published>
     <updated>2020-01-15T15:29:02.301Z</updated>
+    
+    <content type="html"><![CDATA[<p>于此处记录博客搭建以来的一些时间点及事件</p><blockquote><p><span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i></span>时间线页面初步更改完毕，下一步计划为更改至<a href="https://github.com/LGiki/hexo-theme-timeline" target="_blank" rel="noopener">合适的主题</a></p><footer><span>2020-01-13 23:27</span></footer></blockquote><blockquote><p><span class="fa-stack"><i class="fa fa-wpexplorer fa-stack-1x"></i></span>开始着手更改时间线页面<br>参考资料：<a href="http://channingsun.bid/2016/05/10/20160510_%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Timeline/" target="_blank" rel="noopener">给博客添加Timeline</a></p><footer><span>2020-01-13 22:41</span></footer></blockquote><blockquote><p><span class="fa-stack"><i class="fa fa-pencil-square fa-stack-1x"></i></span>撰写第一篇博文</p><footer><span>2018-10-30 21:04</span></footer></blockquote><blockquote><p><span class="fa-stack"><i class="fa fa-birthday-cake fa-stack-1x"></i></span>博客创建</p><footer><span>2018-10-29 16:09</span></footer></blockquote>]]></content>
     
     <summary type="html">
     
@@ -96,6 +102,8 @@
     <published>2019-01-02T11:57:55.000Z</published>
     <updated>2020-01-15T15:03:10.359Z</updated>
     
+    <content type="html"><![CDATA[<p>一年又一年<br><a id="more"></a><br>又是一年的开始。看了一下之前做的总结，发现有些做到了，有些还在路上。那么，着眼于整年，重新定一份新的计划吧。</p><h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ol><li>期末考试无挂科<br>——当然这就需要近几周的爆肝。每天做一定量的题，哪怕没有复习计划也不能停止对题目的熟练。</li><li>假期继续学习<br>——不仅包括技术层面。编程着眼于需求，在学习的同时保证操作熟练度。学习新知识，不虚度大学时光。</li></ol><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>继续熟练Git的基操，掌握团队合作的基本流程，有条件的话与任意一位对Git无了解的同学一起在github上完成某项写作任务。</p><h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><p>博客按时更新，每周一篇技术类分享，总结技术的同时锻炼语言组织能力。</p><h2 id="健康"><a href="#健康" class="headerlink" title="健康"></a>健康</h2><p>每日步数5000+，从身体健康开始养成良好的作息习惯。</p><p><hr style="border:1 dashed #987cb9" width="80%" color="#987cb9" size="1"><br>一点微小的计划，希望之后可以具体而微，落实到实际。</p>]]></content>
+    
     <summary type="html">
     
       &lt;p&gt;一年又一年&lt;br&gt;
@@ -114,6 +122,8 @@
     <id>https://blog.foundation42.work/2018/11/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E4%B8%8E%E7%9B%AE%E6%A0%87/</id>
     <published>2018-11-18T03:19:00.000Z</published>
     <updated>2020-01-15T15:03:06.547Z</updated>
+    
+    <content type="html"><![CDATA[<p>寒冬已至，恍惚中时间翩然而去。之后的日子里，让我们继续前行。<br><a id="more"></a></p><hr><h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul><li><p>HTML + CSS</p><ol><li>具备写出网页与 CSS 样式的能力</li><li>可以将二者结合起来</li><li>可以应用于博客的界面</li></ol></li><li><p>Git</p><ol><li>熟练掌握基本命令</li><li>使用 Git 管理博客更新</li><li>使用 Git 管理 Github 仓库</li><li>与他人一起使用 Github 完成一项工程</li></ol></li></ul><h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><ul><li><p>时间</p><ol><li>提前一天安排次日时间</li><li>安排下周时间</li><li>提高时间利用效率<ol><li>减少非必要活动</li><li>合并同质工作</li><li>提高工作质量</li></ol></li></ol></li><li><p>金钱</p><ol><li>节流<ol><li>少点外卖</li><li>少买游戏</li></ol></li><li>开源<ol><li>奖学金</li></ol></li></ol></li><li><p>健康</p><ol><li>工作日保证步数</li><li>周末保证外出</li><li>阳光长跑争取+5</li><li>冬季保证户外活动时长</li></ol></li></ul><p>一点微小的计划，希望可以为以后起到指导作用。<br><del>毕竟计划就是用来被打破的不是吗</del></p>]]></content>
     
     <summary type="html">
     
@@ -135,6 +145,8 @@
     <id>https://blog.foundation42.work/2018/11/16/%E5%8D%9A%E5%AE%A2%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4/</id>
     <published>2018-11-16T13:03:46.000Z</published>
     <updated>2020-01-15T15:02:07.694Z</updated>
+    
+    <content type="html"><![CDATA[<p>搞了接近两天，换了默认的样式。<br><a id="more"></a><br>现在几个待解决的问题：</p><ol><li>能否使用 https 代替 http 协议？</li><li>如何解决 github settings 界面显示 IP 过期的问题？</li><li>能否在文章中插入图床/本地图片？</li><li>如何学好数据结构（</li></ol><p>另外测试一下代码块与laTeX：</p><pre><code class="C">include&lt;stdio.h&gt;int main() {    printf(&quot;hello world&quot;);    return 0;}</code></pre><p>$E = mc^2$<br>$$\sum_{i=0}^{n} i^2$$</p>]]></content>
     
     <summary type="html">
     
